@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
+  before_action :require_login
   def index
     @q = Event.future.ransack(params[:q])
     @events = @q.result(distinct: true).includes(:bookmarks, :prefecture, user: { avatar_attachment: :blob })
@@ -61,5 +62,9 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:title, :content, :held_at, :prefecture_id, :thumbnail)
+  end
+
+  def not_authenticated
+    redirect_to login_path
   end
 end
