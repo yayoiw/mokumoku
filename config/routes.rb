@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'profiles/show'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get 'events/index'
   root 'events#index'
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   resources :users, only: %i[new create]
+  resources :relationships, only: %i[create destroy]
+  resources :profiles, only: %i[show]
   resources :events do
     collection do
       get :future

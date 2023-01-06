@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProfileDecorator < Draper::Decorator
+class RelationshipDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

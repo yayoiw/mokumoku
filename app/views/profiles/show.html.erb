@@ -5,11 +5,16 @@
         </div>
         <div class="lh-1">
           <h2 class="mb-0">
-            <%= current_user.name %>
+            <%= @user.name %>
           </h2>
-          <p class="mb-0 d-block"><%= current_user.email %></p>
-          <p class="mb-0 d-block"><%= current_user.profile %></p>
-          <p class="mb-0 d-block"><%= current_user.hobby %></p>
+          <p class="mb-0 d-block"><%= @user.email %></p>
+          <p class="mb-0 d-block"><%= @user.profile %></p>
+          <p class="mb-0 d-block"><%= @user.hobby %></p>
         </div>
+        <% if current_user.following?(@user) %>
+          <%= render 'relationships/unfollow_button', user: @user %>
+        <% else %>
+          <%= render 'relationships/follow_button', user: @user %>
+        <% end %>
       </div>
     </div>

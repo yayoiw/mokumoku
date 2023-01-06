@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe ProfileDecorator do
+RSpec.describe RelationshipDecorator do
 end
