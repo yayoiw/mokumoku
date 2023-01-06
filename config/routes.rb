@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   resources :users, only: %i[new create]
+  resources :relationships, only: %i[create destroy]
+  resources :profiles, only: %i[show]
   resources :events do
     collection do
       get :future
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
     resource :bookmark, only: %i[create destroy], module: :events
     resources :comments, only: %i[create destroy], module: :events
   end
-
+  resources :profiles, only: %i[show]
   resources :notifications, only: %i[index show]
   namespace :notifications do
     resource :all_reads, only: %i[create]
